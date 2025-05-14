@@ -1,0 +1,81 @@
+.arabic-lemmatizer-paragraph-candidate {
+    position: relative;
+}
+
+.arabic-lemmatizer-paragraph-hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+}
+
+.arabic-lemmatizer-paragraph {
+    position: relative;
+}
+
+.arabic-lemmatizer-word {
+    cursor: pointer;
+    padding: 0 2px;
+    border-radius: 2px;
+    transition: background-color 0.2s;
+}
+
+.arabic-lemmatizer-word.known {
+    background-color: rgba(0, 255, 0, 0.1);
+}
+
+.arabic-lemmatizer-word.unknown {
+    background-color: rgba(255, 0, 0, 0.1);
+}
+
+.arabic-lemmatizer-word.just-marked {
+    background-color: rgba(0, 255, 0, 0.2);
+}
+
+.arabic-lemmatizer-word:hover {
+    background-color: rgba(0, 0, 255, 0.1);
+}
+
+.arabic-lemmatizer-tooltip {
+    position: fixed;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 8px;
+    font-size: 14px;
+    z-index: 10000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: none;
+    pointer-events: auto;
+}
+
+.lemma-parts {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.lemma-part {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.lemma-part:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.lemma-part[data-known="true"] {
+    color: #008000;
+}
+
+.lemma-part[data-known="false"] {
+    color: #ff0000;
+}
+
+.status {
+    font-weight: bold;
+    margin: 0 4px;
+}
