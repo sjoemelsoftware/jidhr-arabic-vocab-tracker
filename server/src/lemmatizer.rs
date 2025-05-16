@@ -1,6 +1,6 @@
 use anyhow::{Context, Result};
 use std::io::{BufRead, BufReader, Write};
-use std::process::{ChildStderr, ChildStdin, ChildStdout, Command, Stdio};
+use std::process::{ChildStdin, ChildStdout, Command, Stdio};
 use std::sync::{Arc, Mutex};
 use tokio::sync::{OnceCell, Semaphore};
 use tracing::info;
@@ -106,9 +106,7 @@ impl Lemmatizer {
 
         // Read response
         let mut line = String::new();
-        let mut response = String::new();
-
-        loop {
+        let response = loop {
             line.clear();
             if child.stdout.read_line(&mut line)? == 0 {
                 return Err(anyhow::anyhow!("Java process exited unexpectedly"));
@@ -118,10 +116,9 @@ impl Lemmatizer {
             info!("lemmatizer: {}", trimmed);
 
             if !trimmed.is_empty() && !trimmed.contains("System ready!") {
-                response = trimmed.to_string();
-                break;
+                break trimmed.to_string();
             }
-        }
+        };
 
         // Create word-lemma mapping
         let words: Vec<&str> = filtered_text.split_whitespace().collect();
