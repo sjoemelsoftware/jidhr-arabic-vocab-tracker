@@ -1,0 +1,168 @@
+/* Arabic Lemmatizer Styles */
+
+.arabic-lemmatizer-container {
+    position: relative;
+}
+
+.arabic-lemmatizer-paragraph-candidate {
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.arabic-lemmatizer-paragraph-hover {
+    background-color: rgba(128, 128, 128, 0.1);
+    cursor: pointer;
+}
+
+.arabic-lemmatizer-paragraph {
+    position: relative;
+}
+
+.arabic-lemmatizer-word {
+    display: inline-block;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+    background-color: transparent;
+    border-bottom: none;
+    box-sizing: border-box;
+    margin-bottom: -1px;
+    /* Compensate for the border */
+}
+
+.arabic-lemmatizer-word.new {
+    background-color: rgba(255, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 0, 0, 0.3);
+}
+
+.arabic-lemmatizer-word.known:hover {
+    background-color: rgba(0, 255, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 255, 0, 0.3);
+}
+
+.arabic-lemmatizer-word.learning {
+    background-color: rgba(255, 165, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 165, 0, 0.3);
+}
+
+.arabic-lemmatizer-word.ignored {
+    background-color: rgba(128, 128, 128, 0.1);
+    border-bottom: 1px solid rgba(128, 128, 128, 0.3);
+}
+
+.arabic-lemmatizer-word:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.arabic-lemmatizer-tooltip {
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    transform: translateX(-50%);
+    margin-top: 5px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    font-size: 14px;
+    z-index: 10000;
+    min-width: 200px;
+    white-space: nowrap;
+}
+
+.arabic-lemmatizer-tooltip::before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 0 6px 6px;
+    border-style: solid;
+    border-color: transparent transparent white;
+    z-index: 1;
+}
+
+.arabic-lemmatizer-tooltip::after {
+    content: '';
+    position: absolute;
+    top: -7px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 0 7px 7px;
+    border-style: solid;
+    border-color: transparent transparent #ccc;
+}
+
+.tooltip-content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+}
+
+.tooltip-lemma {
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.tooltip-status {
+    display: none;
+    /* Hide the status text */
+}
+
+.tooltip-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 0;
+    /* Remove top margin since we removed status */
+    width: 100%;
+}
+
+.tooltip-button {
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    padding: 4px 8px;
+    transition: all 0.2s;
+    background-color: white;
+    flex: 1;
+    text-align: center;
+    color: #95a5a6;
+    /* Default color for non-active buttons */
+}
+
+.tooltip-button:hover {
+    opacity: 0.8;
+    transform: translateY(-1px);
+}
+
+.tooltip-button.known {
+    color: #2ecc71;
+}
+
+.tooltip-button.known.active {
+    background-color: rgba(46, 204, 113, 0.2);
+    border-color: #2ecc71;
+    color: #2ecc71;
+}
+
+.tooltip-button.learning {
+    color: #f39c12;
+}
+
+.tooltip-button.learning.active {
+    background-color: rgba(243, 156, 18, 0.2);
+    border-color: #f39c12;
+    color: #f39c12;
+}
+
+.tooltip-button.ignored {
+    color: #95a5a6;
+}
+
+.tooltip-button.ignored.active {
+    background-color: rgba(149, 165, 166, 0.2);
+    border-color: #95a5a6;
+    color: #95a5a6;
+}

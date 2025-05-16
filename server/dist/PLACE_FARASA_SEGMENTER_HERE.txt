@@ -1,0 +1,1 @@
+Place FarasaSegmenterJar.jar in this directory.

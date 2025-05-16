@@ -1,0 +1,27 @@
+{
+  "extensionDescription": {
+    "description": "Extension description",
+    "message": "Track your Arabic vocabulary while browsing using Jidhr.com."
+  },
+  "extensionName": {
+    "description": "Extension name",
+    "message": "Jidhr - Vocabulary Tracker"
+  },
+  "loading": {
+    "message": "Loading..."
+  },
+  "greeting": {
+    "description": "Greeting message",
+    "message": "Hello, My name is $NAME$",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "John Doe"
+      }
+    }
+  },
+  "hello": {
+    "description": "Placeholder example",
+    "message": "Hello $1"
+  }
+}
