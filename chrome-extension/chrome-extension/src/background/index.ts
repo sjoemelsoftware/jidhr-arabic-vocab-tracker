@@ -5,7 +5,12 @@ console.log('Background loaded');
 console.log("Edit 'chrome-extension/src/background/index.ts' and save to reload.");
 
 // Define allowed origins that can send messages to our extension
-const ALLOWED_ORIGINS = ['https://api.jidhr.com', 'http://localhost:3000'];
+const ALLOWED_ORIGINS = [
+  'https://api.jidhr.com',
+  'https://www.jidhr.com',
+  'https://jidhr.com',
+  'http://localhost:3000',
+];
 
 // Handle messages from external websites
 chrome.runtime.onMessageExternal.addListener(async (request, sender, sendResponse) => {

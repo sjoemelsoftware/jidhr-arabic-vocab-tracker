@@ -29,10 +29,10 @@ const manifest = {
   },
   version: packageJson.version,
   description: '__MSG_extensionDescription__',
-  host_permissions: ['https://api.jidhr.com/*', 'https://jidhr.com/*'],
+  host_permissions: ['https://api.jidhr.com/*', 'https://jidhr.com/*', 'https://www.jidhr.com/*'],
   permissions: ['activeTab', 'storage', 'notifications'],
   externally_connectable: {
-    matches: ['https://jidhr.com/*', 'https://www.jidhr.com/*', 'http://localhost:3000/*'],
+    matches: ['https://jidhr.com/*', 'https://www.jidhr.com/*', 'https://api.jidhr.com/*'],
   },
   background: {
     service_worker: 'background.js',
