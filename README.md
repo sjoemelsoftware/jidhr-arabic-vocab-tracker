@@ -8,7 +8,8 @@ A browser extension and backend service that helps you track and expand your Ara
 
 The project consists of two main components:
 
-1. **Chrome Extension**: A browser plugin that:
+1. **Chrome Extension** (`/chrome-extension`):
+   A browser plugin that:
 
    - Processes selected Arabic text on any webpage
    - Shows lemmatized forms of words
