@@ -1,4 +1,4 @@
-# Arabic Vocabulary Tracker
+# Jidhr.com - Arabic Vocabulary Tracker
 
 _Note: This project is currently a work in progress_
 
