@@ -65,6 +65,7 @@ For production build:
 
 ```bash
 cargo build --release
+cross build --target x86_64-unknown-linux-musl --release
 ```
 
 Running the release build with custom settings:

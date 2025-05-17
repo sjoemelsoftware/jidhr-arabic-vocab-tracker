@@ -31,12 +31,12 @@ const manifest = {
   description: '__MSG_extensionDescription__',
   host_permissions: ['<all_urls>'],
   permissions: ['storage', 'scripting', 'tabs', 'notifications'],
-  options_page: 'options/index.html',
   background: {
     service_worker: 'background.js',
     type: 'module',
   },
   action: {
+    default_popup: 'popup/index.html',
     default_icon: 'icon-34.png',
   },
   chrome_url_overrides: {},

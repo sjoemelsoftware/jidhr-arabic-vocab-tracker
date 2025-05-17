@@ -1,6 +1,7 @@
 import { useStorage } from '@extension/shared';
 import { optionsStorage } from '@extension/storage';
 import { createContext, useContext, useState, useCallback } from 'react';
+import { fetchApi } from '../utils/apiUtils';
 
 interface WordInfo {
   word: string;
@@ -63,38 +64,38 @@ export const LemmatizerProvider: React.FC<{ children: React.ReactNode }> = ({ ch
     });
   }, []);
 
-  const updateWordStatus = useCallback(async (lemma: string, newStatus: string) => {
-    try {
-      const response = await fetch(`${options.backendUrl}/vocabulary`, {
+  const updateWordStatus = useCallback(
+    async (lemma: string, newStatus: string) => {
+      const response = await fetchApi<void>({
+        url: `${options.backendUrl}`,
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ lemmas: [lemma], status: newStatus }),
+        body: { lemmas: [lemma], status: newStatus },
+        apiToken: options.apiToken,
+        defaultErrorMessage: 'Failed to update word status',
       });
 
-      if (!response.ok) throw new Error('Failed to update word status');
+      if (response !== null) {
+        // Update lemmaStatuses first
+        setLemmaStatuses(prev => {
+          const newMap = new Map(prev);
+          newMap.set(lemma, newStatus);
+          return newMap;
+        });
 
-      // Update lemmaStatuses first
-      setLemmaStatuses(prev => {
-        const newMap = new Map(prev);
-        newMap.set(lemma, newStatus);
-        return newMap;
-      });
-
-      // Then update all highlighted words with this lemma
-      setHighlightedWords(prev => {
-        const newMap = new Map(prev);
-        for (const [element, word] of newMap.entries()) {
-          if (word.lemma === lemma) {
-            newMap.set(element, { ...word, status: newStatus });
+        // Then update all highlighted words with this lemma
+        setHighlightedWords(prev => {
+          const newMap = new Map(prev);
+          for (const [element, word] of newMap.entries()) {
+            if (word.lemma === lemma) {
+              newMap.set(element, { ...word, status: newStatus });
+            }
           }
-        }
-        return newMap;
-      });
-    } catch (error) {
-      console.error('Error updating word status:', error);
-      throw error;
-    }
-  }, []);
+          return newMap;
+        });
+      }
+    },
+    [options.backendUrl, options.apiToken],
+  );
 
   const getWordInfo = useCallback(
     (element: HTMLElement) => {

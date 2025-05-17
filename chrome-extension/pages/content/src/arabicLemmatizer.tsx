@@ -2,6 +2,7 @@ import { createRoot } from 'react-dom/client';
 import { HighlightedWord } from './components/HighlightedWord';
 import { LemmatizerProvider } from './context/LemmatizerContext';
 import { optionsStorage } from '@extension/storage';
+import { fetchApi } from './utils/apiUtils';
 
 interface WordInfo {
   word: string;
@@ -17,6 +18,7 @@ interface CheckResult {
 export class ArabicLemmatizer {
   private isProcessing: boolean;
   private backendUrl?: string;
+  private apiToken?: string;
 
   constructor() {
     this.isProcessing = false;
@@ -26,6 +28,7 @@ export class ArabicLemmatizer {
     optionsStorage.subscribe(async () => {
       const options = await optionsStorage.get();
       this.backendUrl = options.backendUrl;
+      this.apiToken = options.apiToken;
     });
   }
 
@@ -168,23 +171,12 @@ export class ArabicLemmatizer {
   }
 
   private async checkText(text: string): Promise<CheckResult | null> {
-    if (!this.backendUrl) {
-      console.error('Backend URL is not set');
-      return null;
-    }
-
-    try {
-      const response = await fetch(`${this.backendUrl}/check`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ text }),
-      });
-
-      if (!response.ok) throw new Error('API request failed');
-      return (await response.json()) as CheckResult;
-    } catch (error) {
-      console.error('Error checking text:', error);
-      return null;
-    }
+    return fetchApi<CheckResult>({
+      url: `${this.backendUrl}/check`,
+      method: 'POST',
+      body: { text },
+      apiToken: this.apiToken,
+      defaultErrorMessage: 'Failed to process text',
+    });
   }
 }

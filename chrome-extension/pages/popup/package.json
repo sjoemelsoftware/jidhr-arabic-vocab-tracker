@@ -1,7 +1,7 @@
 {
-  "name": "@extension/options",
+  "name": "@extension/popup",
   "version": "0.4.3",
-  "description": "chrome extension - options",
+  "description": "chrome extension - popup",
   "type": "module",
   "private": true,
   "sideEffects": true,
@@ -22,8 +22,8 @@
   "dependencies": {
     "@extension/shared": "workspace:*",
     "@extension/storage": "workspace:*",
-    "@extension/ui": "workspace:*",
-    "@extension/i18n": "workspace:*"
+    "@extension/i18n": "workspace:*",
+    "@extension/ui": "workspace:*"
   },
   "devDependencies": {
     "@extension/tailwindcss-config": "workspace:*",
