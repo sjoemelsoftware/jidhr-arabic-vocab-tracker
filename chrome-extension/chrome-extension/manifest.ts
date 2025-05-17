@@ -29,8 +29,8 @@ const manifest = {
   },
   version: packageJson.version,
   description: '__MSG_extensionDescription__',
-  host_permissions: ['<all_urls>'],
-  permissions: ['storage', 'scripting', 'tabs', 'notifications'],
+  host_permissions: ['https://api.jidhr.com/*', 'https://jidhr.com/*'],
+  permissions: ['activeTab', 'storage', 'notifications'],
   externally_connectable: {
     matches: ['https://jidhr.com/*', 'https://www.jidhr.com/*', 'http://localhost:3000/*'],
   },
@@ -40,11 +40,11 @@ const manifest = {
   },
   action: {
     default_popup: 'popup/index.html',
-    default_icon: 'icon-34.png',
+    default_icon: 'jidhr_logo_transparant_34.png',
   },
   chrome_url_overrides: {},
   icons: {
-    '128': 'icon-128.png',
+    '128': 'jidhr_logo_transparant_128.png',
   },
   content_scripts: [
     {
@@ -58,7 +58,7 @@ const manifest = {
   ],
   web_accessible_resources: [
     {
-      resources: ['*.js', '*.css', '*.svg', 'icon-128.png', 'icon-34.png'],
+      resources: ['*.js', '*.css', '*.svg', 'jidhr_logo_transparant_128.png', 'jidhr_logo_transparant_34.png'],
       matches: ['<all_urls>'],
     },
   ],

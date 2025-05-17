@@ -1,13 +1,13 @@
 {
   "name": "chrome-extension-jidhr-vocab",
-  "version": "0.4.3",
-  "description": "chrome extension for jidhr vocab",
+  "version": "0.4.4",
+  "description": "Jidhr.com - Arabic Vocabulary Tracker",
   "license": "MIT",
   "private": true,
   "sideEffects": false,
   "repository": {
     "type": "git",
-    "url": "https://github.com/Jonghakseo/chrome-extension-boilerplate-react-vite.git"
+    "url": "https://github.com/sjoemelsoftware/jidhr-arabic-vocab-tracker.git"
   },
   "type": "module",
   "scripts": {

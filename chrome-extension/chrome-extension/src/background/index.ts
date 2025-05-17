@@ -32,7 +32,7 @@ chrome.runtime.onMessageExternal.addListener(async (request, sender, sendRespons
       // Show success notification
       chrome.notifications.create({
         type: 'basic',
-        iconUrl: chrome.runtime.getURL('icon-34.png'),
+        iconUrl: chrome.runtime.getURL('jidhr_logo_transparant_34.png'),
         title: 'Jidhr.com successfully connected',
         message: 'Your API key has been set successfully. You can now use the extension.',
       });
