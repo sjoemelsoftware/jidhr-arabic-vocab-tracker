@@ -6,7 +6,9 @@ A browser extension and backend service that helps you track and expand your Ara
 
 ![Demo of the Arabic Vocabulary Tracker](examples/jidhr-vocab-chrome-extension-screenshot.png)
 
-**Website**: [jidhr.com](https://jidhr.com)
+**Website**: [jidhr.com](https://jidhr.com)  
+**Vocabulary Dashboard**: [jidhr.com/vocab](https://jidhr.com/vocab)  
+**Author**: [Joep de Jong](https://joepdejong.com) ([GitHub](https://github.com/joepdejong))
 
 ## Overview
 
@@ -73,13 +75,41 @@ Note: While the self-hosted version currently doesn't provide a web interface fo
 
 ## Getting Started
 
-### Chrome Extension
+### Chrome Extension Installation
 
-1. Install the extension from the Chrome Web Store (link coming soon)
-2. Click the extension icon to configure:
-   - Choose between hosted service or custom backend URL
+The extension is currently being reviewed by the Chrome Web Store. In the meantime, you can install it manually:
+
+1. Download the latest version from our [GitHub releases](https://github.com/sjoemelsoftware/jidhr-arabic-vocab-tracker/tree/main/chrome-extension/dist-zip)
+2. Open Chrome and go to `chrome://extensions/`
+3. Enable "Developer mode" in the top right
+4. Click "Load unpacked" and select the downloaded extension folder
+
+Once approved, the extension will be available directly from the Chrome Web Store (link coming soon).
+
+### Extension Setup
+
+After installation:
+
+1. Click the extension icon to configure:
+   - Choose between [hosted service](https://jidhr.com/vocab) or custom backend URL
    - Set your preferences for text processing
    - Configure vocabulary tracking options
+
+### Using the Hosted Service
+
+The easiest way to get started is using our hosted service at [jidhr.com/vocab](https://jidhr.com/vocab):
+
+1. Sign up or login to [jidhr.com](https://jidhr.com)
+2. Open the extension popup and click on "Get API token"
+3. You will be redirected to [jidhr.com/vocab](https://jidhr.com/vocab)
+4. Use the button provided to set your API key in the plugin
+
+On [jidhr.com/vocab](https://jidhr.com/vocab), you can also:
+
+- View your complete vocabulary list
+- Track your learning progress
+- Manage your word statuses
+- Export your data
 
 ### Backend (Self-Hosting)
 
