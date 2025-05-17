@@ -31,6 +31,9 @@ const manifest = {
   description: '__MSG_extensionDescription__',
   host_permissions: ['<all_urls>'],
   permissions: ['storage', 'scripting', 'tabs', 'notifications'],
+  externally_connectable: {
+    matches: ['https://api.jidhr.com/*', 'http://localhost:3000/*'],
+  },
   background: {
     service_worker: 'background.js',
     type: 'module',

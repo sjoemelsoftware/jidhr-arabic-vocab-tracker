@@ -4,6 +4,8 @@ _Note: This project is currently a work in progress_
 
 A browser extension and backend service that helps you track and expand your Arabic vocabulary while browsing the internet. The system processes Arabic text you encounter, allowing you to mark words as known or to-learn, building your personalized vocabulary database.
 
+![Demo of the Arabic Vocabulary Tracker](examples/jidhr-vocab-chrome-extension-screenshot.png)
+
 ## Overview
 
 The project consists of two main components:
@@ -27,6 +29,17 @@ The project consists of two main components:
 
 A hosted version of the backend is available at `jidhr.com/vocab`. This is the easiest way to get started, as it requires no setup beyond installing the Chrome extension.
 
+### Connecting to the Hosted Service
+
+1. Sign up or login to jidhr.com
+2. Open the extension popup and click on "Get API token"
+3. You will be redirected to jidhr.com/vocab
+4. Use the button provided to set your API key in the plugin
+
+On jidhr.com/vocab, you can also view a comprehensive overview of your vocabulary progress.
+
+![Extension Settings](examples/jidhr-vocab-chrome-extension-settings.png)
+
 ## Self-Hosting
 
 For users who prefer to maintain their privacy by hosting their own backend:
@@ -34,6 +47,17 @@ For users who prefer to maintain their privacy by hosting their own backend:
 1. Follow the setup instructions in `/server/README.md`
 2. Configure the Chrome extension to use your self-hosted backend URL
 3. Ensure your hosting environment meets all backend requirements (Rust, Java, SQLite)
+
+Note: The self-hosted version does not require an API key - simply point the extension to your backend URL and you're ready to go.
+
+### Tracked Vocabulary
+
+The self-hosted backend provides the following endpoints for vocabulary access:
+
+- `GET /vocabulary` - Retrieve complete vocabulary list
+- `GET /vocabulary/:status` - Filter vocabulary by status (e.g., `/vocabulary/known`)
+
+Note: While the self-hosted version currently doesn't provide a web interface for vocabulary overview, all data can be accessed through these API endpoints.
 
 ## Features
 

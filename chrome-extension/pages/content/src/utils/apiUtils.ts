@@ -69,7 +69,8 @@ export const handleApiResponse = async <T>(
   defaultErrorMessage: string = 'Failed to process request',
 ): Promise<T> => {
   if (!response.ok) {
-    const errorMessage = DEFAULT_ERROR_MESSAGES[response.status] || defaultErrorMessage;
+    const errorMessage =
+      DEFAULT_ERROR_MESSAGES[response.status] || (await response.json()).error || defaultErrorMessage;
     showToast({ title: 'API Error', message: errorMessage, type: 'error' });
     throw new Error(`API request failed: ${errorMessage}`);
   }
@@ -93,6 +94,5 @@ export const handleApiError = (error: unknown, defaultMessage: string = 'An erro
       });
     }
   }
-  console.error('API Error:', error);
   throw error;
 };
