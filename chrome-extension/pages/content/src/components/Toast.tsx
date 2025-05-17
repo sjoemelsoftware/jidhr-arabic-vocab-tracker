@@ -35,6 +35,7 @@ export const Toast = ({ title, message, duration = 3000, type = 'error' }: Toast
         zIndex: 10000,
         maxWidth: '400px',
         animation: 'slideIn 0.3s ease-out',
+        direction: 'ltr',
       }}>
       <div style={{ fontWeight: 'bold', marginBottom: '4px' }}>{title}</div>
       <div>{message}</div>

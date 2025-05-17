@@ -62,33 +62,43 @@ export class ArabicLemmatizer {
   private findArabicElement(element: HTMLElement | null): HTMLElement | null {
     if (!element) return null;
 
-    // Skip if element is already processed or is a lemmatized word
-    if (element.classList.contains('arabic-lemmatizer-word')) {
-      return null;
-    }
-
-    // Check if the element or any of its parents is already lemmatized
-    if (element.closest('.arabic-lemmatizer-paragraph')) {
-      return null;
-    }
-
     const textElements = ['P', 'DIV', 'SPAN', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'LI', 'TD', 'TH', 'LABEL'];
+    const isAlreadyWord = element.classList.contains('arabic-lemmatizer-word');
+    const isInsideProcessedParagraph = element.closest('.arabic-lemmatizer-paragraph');
+    const isInsideLink = element.closest('a');
+
+    if (isAlreadyWord || isInsideProcessedParagraph || isInsideLink) {
+      return null;
+    }
+
+    // Start checking from the element and walk up
     let current: HTMLElement | null = element;
-
     while (current && current.nodeType === Node.ELEMENT_NODE) {
-      // Skip if element or any of its parents is a link
-      const isLink = current.tagName === 'A';
-      const isLinkChild = current.closest?.('a') !== null;
-
-      if (isLink || isLinkChild) {
-        return null;
+      if (!textElements.includes(current.tagName)) {
+        current = current.parentElement;
+        continue;
       }
 
-      if (textElements.includes(current.tagName) && this.containsArabic(current.textContent || '')) {
+      const hasDirectArabic =
+        this.containsArabic(current.textContent || '') &&
+        Array.from(current.childNodes).every(node => {
+          if (node.nodeType === Node.TEXT_NODE) {
+            return true; // allow direct text
+          }
+          if (node.nodeType === Node.ELEMENT_NODE) {
+            return !this.containsArabic((node as HTMLElement).textContent || '');
+          }
+          return true;
+        });
+
+      if (hasDirectArabic) {
         return current;
       }
-      current = current.parentElement;
+
+      // Stop walking up if current is in textElements but no Arabic in immediate structure
+      break;
     }
+
     return null;
   }
 

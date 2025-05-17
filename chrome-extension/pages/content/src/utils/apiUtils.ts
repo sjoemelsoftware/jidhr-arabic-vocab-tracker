@@ -9,6 +9,7 @@ const DEFAULT_ERROR_MESSAGES: ApiErrorMessages = {
   404: 'API endpoint not found',
   405: 'Method not allowed. Please check the backend URL.',
   429: 'Too many requests',
+  500: 'An issue occured with the Lemmatizer. Please try again later.',
 };
 
 export const getHeaders = (apiToken?: string): HeadersInit => {
@@ -24,7 +25,7 @@ export const getHeaders = (apiToken?: string): HeadersInit => {
 export const validateBackendUrl = (backendUrl?: string): boolean => {
   if (!backendUrl) {
     showToast({
-      title: 'Configuration Error',
+      title: 'Jidhr.com - Vocab',
       message: 'Backend URL is not set. Please configure it in the extension options.',
       type: 'error',
     });
@@ -69,9 +70,9 @@ export const handleApiResponse = async <T>(
   defaultErrorMessage: string = 'Failed to process request',
 ): Promise<T> => {
   if (!response.ok) {
-    const errorMessage =
-      DEFAULT_ERROR_MESSAGES[response.status] || (await response.json()).error || defaultErrorMessage;
-    showToast({ title: 'API Error', message: errorMessage, type: 'error' });
+    console.log('response', response);
+    const errorMessage = DEFAULT_ERROR_MESSAGES[response.status] || defaultErrorMessage;
+    showToast({ title: 'Jidhr.com - Vocab', message: errorMessage, type: 'error' });
     throw new Error(`API request failed: ${errorMessage}`);
   }
   return response.json() as Promise<T>;
@@ -81,14 +82,14 @@ export const handleApiError = (error: unknown, defaultMessage: string = 'An erro
   if (error instanceof Error) {
     if (error.message.includes('Failed to fetch')) {
       showToast({
-        title: 'Connection Error',
+        title: 'Jidhr.com - Vocab',
         message: 'Could not connect to the backend server. Please check your connection and the backend URL.',
         type: 'error',
       });
     } else if (!error.message.includes('API request failed')) {
       // Don't show another toast if it's an API error (already shown by handleApiResponse)
       showToast({
-        title: 'Error',
+        title: 'Jidhr.com - Vocab',
         message: error.message || defaultMessage,
         type: 'error',
       });

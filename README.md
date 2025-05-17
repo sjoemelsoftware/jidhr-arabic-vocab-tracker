@@ -6,6 +6,8 @@ A browser extension and backend service that helps you track and expand your Ara
 
 ![Demo of the Arabic Vocabulary Tracker](examples/jidhr-vocab-chrome-extension-screenshot.png)
 
+**Website**: [jidhr.com](https://jidhr.com)
+
 ## Overview
 
 The project consists of two main components:
